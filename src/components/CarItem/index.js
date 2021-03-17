@@ -4,19 +4,31 @@ import styles from './styles';
 import StyledButton from '../StyledButton';
 
 
-const CarItem = () => {
+const CarItem = (props) => {
+
+  const { name, tagline, taglineCTA, image} = props.car; 
+
     return (
         
       <View style={styles.carContainer}>
 
-      <ImageBackground source={require('../../../assets/images/ModelX.jpeg')}
+      <ImageBackground 
+      source={image}
       style={styles.image}
       />
 
       <View style={styles.titles}>
-        <Text style={styles.title}>Model S</Text>
-        <Text style={styles.subtitle}>Fra 400.000</Text>
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.subtitle}>
+        {tagline}
+        {' '}
+        <Text style={styles.subtitleCTA}>
+          {taglineCTA}
+        </Text>
+        </Text>
         </View>
+
+        <View style={styles.buttonsContainer} > 
 
         <StyledButton type="primary" 
         content={"Custom Order"}
@@ -28,6 +40,9 @@ const CarItem = () => {
          onPress={() => {
            console.warn("Existing order was pressed")
          }}/>
+
+        </View>
+
       </View>
     );
 };
